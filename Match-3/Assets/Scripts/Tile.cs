@@ -74,13 +74,13 @@ public class Tile : MonoBehaviour
     public IEnumerator AppearTile()
     {
         animationController.Play(AppearAnimName);
-        yield return new WaitForSeconds(animationController.GetClip(AppearAnimName).averageDuration);
+        yield return new WaitForSeconds(animationController.GetClip(AppearAnimName).length);
     }
 
     public IEnumerator DisappearTile()
     {
         animationController.Play(DisappearAnimName);
-        yield return new WaitForSeconds(animationController.GetClip(DisappearAnimName).averageDuration);
+        yield return new WaitForSeconds(animationController.GetClip(DisappearAnimName).length);
         Destroy(gameObject);
     }
 }
