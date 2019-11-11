@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 [Serializable]
 public class LevelData
@@ -21,7 +22,7 @@ public class LevelData
 
 public static class LevelsData
 {
-    public const string LevelsFolderPath = "Assets/Resources/Levels";
+    public const string LevelsFolderPath = "Levels";
 
     private static List<LevelData> levels = new List<LevelData>();
 
@@ -33,7 +34,8 @@ public static class LevelsData
             return cashedLevel;
         }
 
-        string[] readedLines = File.ReadAllLines(LevelsFolderPath + "/level_" + index + ".txt");
+        TextAsset file = Resources.Load<TextAsset>(LevelsFolderPath + "/level_" + index);
+        string[] readedLines = file.text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
         if (readedLines.Length <= 0)
         {
@@ -79,22 +81,14 @@ public static class LevelsData
 
     public static LevelData[] GetLevels()
     {
-        string[] files = Directory.GetFiles(LevelsFolderPath);
-        List<string> levelsPaths = new List<string>();
-        for (int i = 0; i < files.Length; i++)
-        {
-            if (!files[i].EndsWith(".meta"))
-            {
-                levelsPaths.Add(files[i]);
-            }
-        }
+        TextAsset[] files = Resources.LoadAll<TextAsset>(LevelsFolderPath);
 
-        if (levels.Count == levelsPaths.Count)
+        if (levels.Count == files.Length)
         {
             return levels.ToArray();
         }
 
-        for (int i = 1; i <= levelsPaths.Count; i++)
+        for (int i = 1; i <= files.Length; i++)
         {
             LevelData levelData = GetLevelByIndex(i);
             if (!levels.Contains(levelData))
