@@ -614,8 +614,8 @@ public class BoardController : MonoBehaviour
                         /* 
                          * ^^^^^^^^^
                          * ^^^^^^^^^
-                         * ^^##^^^^^
-                         * ^$^^^^^^^
+                         * ^^#$^^^^^
+                         * ^#^^^^^^^
                          * ^^^^^^^^^
                          */
 
@@ -625,10 +625,21 @@ public class BoardController : MonoBehaviour
                     {
                         /* 
                          * ^^^^^^^^^
+                         * ^^$^^^^^^
                          * ^^#^^^^^^
-                         * ^^#^^^^^^
-                         * ^$^^^^^^^
+                         * ^#^^^^^^^
                          * ^^^^^^^^^
+                         */
+                        return true;
+                    }
+                    else if ((row + 1 < level.Rows && column + 1 < level.Columns) && currentTile.ID == board[row + 1, column + 1].ID)
+                    {
+                        /* 
+                         * ^^^^^^^^^
+                         * ^^^^^^^^^
+                         * ^^#^^^^^^
+                         * ^#^^^^^^^
+                         * ^^$^^^^^^
                          */
                         return true;
                     }
@@ -639,8 +650,8 @@ public class BoardController : MonoBehaviour
                     {
                         /* 
                          * ^^^^^^^^^
-                         * ^^$^^^^^^
-                         * ^^^##^^^^
+                         * ^^#^^^^^^
+                         * ^^^#$^^^^
                          * ^^^^^^^^^
                          * ^^^^^^^^^
                          */
@@ -650,14 +661,24 @@ public class BoardController : MonoBehaviour
                     {
                         /* 
                          * ^^^^^^^^^
-                         * ^^$^^^^^^
+                         * ^^#^^^^^^
                          * ^^^#^^^^^
-                         * ^^^#^^^^^
+                         * ^^^$^^^^^
                          * ^^^^^^^^^
                          */
                         return true;
                     }
-
+                    else if ((row - 1 >= 0 && column + 1 < level.Columns) && currentTile.ID == board[row - 1, column + 1].ID)
+                    {
+                        /* 
+                         * ^^^$^^^^^
+                         * ^^#^^^^^^
+                         * ^^^#^^^^^
+                         * ^^^^^^^^^
+                         * ^^^^^^^^^
+                         */
+                        return true;
+                    }
                 }
                 else if ((row + 1 < level.Rows && column - 1 >= 0) && currentTile.ID == board[row + 1, column - 1].ID)
                 {
@@ -665,8 +686,8 @@ public class BoardController : MonoBehaviour
                     {
                         /* 
                          * ^^^^^^^^^
-                         * ^^$^^^^^^
-                         * ##^^^^^^^
+                         * ^^#^^^^^^
+                         * $#^^^^^^^
                          * ^^^^^^^^^
                          * ^^^^^^^^^
                          */
@@ -676,9 +697,20 @@ public class BoardController : MonoBehaviour
                     {
                         /* 
                          * ^^^^^^^^^
-                         * ^^$^^^^^^
+                         * ^^#^^^^^^
                          * ^#^^^^^^^
+                         * ^$^^^^^^^
+                         * ^^^^^^^^^
+                         */
+                        return true;
+                    }
+                    else if ((row - 1 >= 0 && column - 1 >= 0) && currentTile.ID == board[row - 1, column - 1].ID)
+                    {
+                        /* 
+                         * ^$^^^^^^^
+                         * ^^#^^^^^^
                          * ^#^^^^^^^
+                         * ^^^^^^^^^
                          * ^^^^^^^^^
                          */
                         return true;
@@ -690,8 +722,8 @@ public class BoardController : MonoBehaviour
                     {
                         /* 
                          * ^^^^^^^^^
-                         * ##^^^^^^^
-                         * ^^$^^^^^^
+                         * $#^^^^^^^
+                         * ^^#^^^^^^
                          * ^^^^^^^^^
                          * ^^^^^^^^^
                          */
@@ -700,14 +732,71 @@ public class BoardController : MonoBehaviour
                     else if ((row - 2 >= 0 && column - 1 >= 0) && currentTile.ID == board[row - 2, column - 1].ID)
                     {
                         /* 
+                         * ^$^^^^^^^
                          * ^#^^^^^^^
-                         * ^#^^^^^^^
-                         * ^^$^^^^^^
+                         * ^^#^^^^^^
                          * ^^^^^^^^^
                          * ^^^^^^^^^
                          */
                         return true;
                     }
+                    else if ((row - 1 >= 0 && column + 1 < level.Columns) && currentTile.ID == board[row - 1, column + 1].ID)
+                    {
+                        /* 
+                         * ^^^^^^^^^
+                         * ^#^$^^^^^
+                         * ^^#^^^^^^
+                         * ^^^^^^^^^
+                         * ^^^^^^^^^
+                         */
+                        return true;
+                    }
+                }
+                else if (column + 2 < level.Columns && currentTile.ID == board[row, column + 2].ID && column + 3 < level.Columns && currentTile.ID == board[row, column + 3].ID)
+                {
+                    /* 
+                     * ^^^^^^^^^
+                     * ^^^^^^^^^
+                     * ^^^#^##^^
+                     * ^^^^^^^^^
+                     * ^^^^^^^^^
+                     */
+                    return true;
+                }
+                else if (column - 2 >= 0 && currentTile.ID == board[row, column - 2].ID && column - 3 >= 0 && currentTile.ID == board[row, column - 3].ID)
+                {
+                    /* 
+                     * ^^^^^^^^^
+                     * ^^^^^^^^^
+                     * ##^#^^^^^
+                     * ^^^^^^^^^
+                     * ^^^^^^^^^
+                     */
+                    return true;
+                }
+                else if (row + 2 < level.Rows && currentTile.ID == board[row + 2, column].ID && row + 3 < level.Rows && currentTile.ID == board[row + 3, column].ID)
+                {
+                    /* 
+                     * ^^^^^^^^^
+                     * ^^^#^^^^^
+                     * ^^^^^^^^^
+                     * ^^^#^^^^^
+                     * ^^^#^^^^^
+                     * ^^^^^^^^^
+                     */
+                    return true;
+                }
+                else if (row - 2 >= 0 && currentTile.ID == board[row - 2, column].ID && row - 3 >= 0 && currentTile.ID == board[row - 3, column].ID)
+                {
+                    /* 
+                     * ^^^#^^^^^
+                     * ^^^#^^^^^
+                     * ^^^^^^^^^
+                     * ^^^#^^^^^
+                     * ^^^^^^^^^
+                     * ^^^^^^^^^
+                     */
+                    return true;
                 }
             }
         }
