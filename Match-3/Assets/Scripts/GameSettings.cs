@@ -20,16 +20,14 @@ public class GameSettings : ScriptableObject
     public int ScorePerTile => scorePerTile;
 
     [Header("Animation Settings")]
-    [SerializeField] private float spawnTileInterval = 1.0f;
-    public float SpawnTileInterval => spawnTileInterval;
-    [SerializeField] private float pauseAfterDestroyMatches = 1.0f;
+    [SerializeField] private float pauseAfterDestroyMatches = 0.1f;
     public float PauseAfterDestroyMatches => pauseAfterDestroyMatches;
-    [SerializeField] private float pauseAfterFillInBoard = 1.0f;
+    [SerializeField] private float pauseAfterFillInBoard = 0.2f;
     public float PauseAfterFillInBoard => pauseAfterFillInBoard;
-    [SerializeField] private float pauseAfterSwap = 1.0f;
+    [SerializeField] private float pauseAfterSwap = 0.1f;
     public float PauseAfterSwap => pauseAfterSwap;
-    [SerializeField] private float pauseAfterShuffle = 1.0f;
+    [SerializeField] private float pauseAfterShuffle = 0.5f;
     public float PauseAfterShuffle => pauseAfterShuffle;
-    [SerializeField] private float fillInBoardInterval = 1.0f;
+    [SerializeField] private float fillInBoardInterval = 0.005f;
     public float FillInBoardInterval => fillInBoardInterval;
 }
